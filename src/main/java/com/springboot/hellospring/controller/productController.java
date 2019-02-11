@@ -1,5 +1,7 @@
 package com.springboot.hellospring.controller;
 
+import java.util.List;
+
 import javax.servlet.http.HttpServletResponse;
 
 import com.springboot.hellospring.dao.product;
@@ -8,11 +10,12 @@ import org.springframework.web.bind.annotation.RestController;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.transaction.TransactionSystemException;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
+
 
 
 @RestController
@@ -37,15 +40,11 @@ public class productController{
         }
     }
     
-    @RequestMapping(value="/allProduct", method=RequestMethod.GET)
-    public Iterable<product> getProducts() {
-        return productrepo.findAll();
+    @RequestMapping(value="/product/{ch}", method=RequestMethod.GET)
+    public List<product> getProdByName(@PathVariable("ch") String ch) {
+        return productrepo.findByPnameContaining(ch);
     }
-
-    @RequestMapping(value="/product", method=RequestMethod.GET)
-    public Iterable<product> getProductsByName(@RequestParam("ch") String ch) {
-        return productrepo.findByPname(ch);
-    }
+    
     
 }
 

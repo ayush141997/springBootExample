@@ -7,6 +7,5 @@ import com.springboot.hellospring.dao.*;
 
 public interface productModel extends CrudRepository<product, Long> {
     
-    @Query("Select * from product where pname Like %?1%")
-    List<product> findByPname(String pname);
+    List<product> findByPnameContaining(String pname);
 }

@@ -17,10 +17,9 @@ public class ProductControllerTest extends AbstractTest{
     public void setUp() {
         super.setUp();
     }
-
-    @Test
+   @Test
    public void getProductsList() throws Exception {
-      String uri = "/allProduct";
+      String uri = "/product";
       MvcResult mvcResult = mvc.perform(MockMvcRequestBuilders.get(uri)
          .accept(MediaType.APPLICATION_JSON_VALUE)).andReturn();
       
