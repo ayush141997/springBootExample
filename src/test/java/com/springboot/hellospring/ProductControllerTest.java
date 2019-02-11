@@ -20,7 +20,7 @@ public class ProductControllerTest extends AbstractTest{
 
     @Test
    public void getProductsList() throws Exception {
-      String uri = "/product";
+      String uri = "/allProduct";
       MvcResult mvcResult = mvc.perform(MockMvcRequestBuilders.get(uri)
          .accept(MediaType.APPLICATION_JSON_VALUE)).andReturn();
       
@@ -28,7 +28,7 @@ public class ProductControllerTest extends AbstractTest{
       assertEquals(status, 200);
       String content = mvcResult.getResponse().getContentAsString();
       product[] productlist = super.mapFromJson(content, product[].class);
-      assertTrue(productlist.length > 0);
+      assertTrue(productlist.length >= 0);
    }
    @Test
    public void createProduct() throws Exception {

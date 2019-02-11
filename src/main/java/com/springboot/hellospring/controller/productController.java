@@ -11,6 +11,7 @@ import org.springframework.transaction.TransactionSystemException;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 
@@ -36,9 +37,14 @@ public class productController{
         }
     }
     
-    @RequestMapping(value="/product", method=RequestMethod.GET)
+    @RequestMapping(value="/allProduct", method=RequestMethod.GET)
     public Iterable<product> getProducts() {
         return productrepo.findAll();
+    }
+
+    @RequestMapping(value="/product", method=RequestMethod.GET)
+    public Iterable<product> getProductsByName(@RequestParam("ch") String ch) {
+        return productrepo.findByPname(ch);
     }
     
 }
