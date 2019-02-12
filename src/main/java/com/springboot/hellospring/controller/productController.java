@@ -26,18 +26,8 @@ public class productController{
 
     @RequestMapping(value="/product", method=RequestMethod.POST)
     public @ResponseBody String createProduct(@RequestBody product prods,HttpServletResponse res) {
-        try {
             productrepo.save(prods);
             return "Created";
-        } catch(TransactionSystemException t){
-            System.err.println(t);
-            res.setStatus(HttpServletResponse.SC_NOT_ACCEPTABLE);
-            return "Either of the inputs are null";
-        } catch(DataIntegrityViolationException d){
-            System.err.println(d);
-            res.setStatus(HttpServletResponse.SC_CONFLICT);
-            return "Constraint Violation";
-        }
     }
     
     @RequestMapping(value="/product/{ch}", method=RequestMethod.GET)
