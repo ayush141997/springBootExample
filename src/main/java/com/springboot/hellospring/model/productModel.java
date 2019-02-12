@@ -1,6 +1,5 @@
 package com.springboot.hellospring.model;
 
-import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.CrudRepository;
 import java.util.List;
 import com.springboot.hellospring.dao.*;
